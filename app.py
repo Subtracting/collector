@@ -8,7 +8,6 @@ from logstats import logger
 from weather import *
 from newscrape import get_news
 from styling import *
-from components import *
 from datetime import timedelta
 
 graph_style = 'ggplot2'
