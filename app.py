@@ -161,14 +161,6 @@ app.layout = html.Div(dbc.Container(
          #  first tab
          dcc.Tab(label='Dashboard', style=tab_style, selected_style=tab_selected_style, children=[
              html.Div([
-                 #  color selection
-                 #  dbc.Row(dbc.Button("", id='style-orange', n_clicks=0, className="colorButton", style={'background-color': '#f56342'}), style={
-                 #      'float': 'right', 'margin': '20px'}),
-                 #  dbc.Row(dbc.Button("", id='style-blue', n_clicks=0, className="colorButton", style={'background-color': 'blue'}), style={
-                 #      'float': 'right', 'margin': '20px'}),
-                 #  dbc.Row(dbc.Button("", id='style-grey', n_clicks=0, className="colorButton", style={'background-color': 'grey'}), style={
-                 #      'float': 'right', 'margin': '20px'}),
-                 # first row
                  dbc.Row([
                      dbc.Col([
                          stat_graph,
@@ -280,7 +272,6 @@ def update_figures(*args):
         xaxis=dict(
             title_font_color="grey",
             showgrid=False,
-            # tickvals=filtered_stats['date'],
             tickformat='%d-%m'),
         yaxis=dict(
             showgrid=False,
@@ -314,28 +305,6 @@ def update_box(selected_subject, filtered_stats):
     fig.update_yaxes(visible=False)
 
     return fig
-
-
-# @app.callback(
-#     [Output("box1", "style"),
-#      Output("box2", "style"),
-#      Output("box3", "style")],
-#     [Input('style-orange', 'n_clicks'),
-#      Input('style-blue', 'n_clicks'),
-#      Input('style-grey', 'n_clicks')]
-# )
-# def update_style(n_clicks_orange, n_clicks_blue, n_clicks_grey):
-
-#     theme = {}
-
-#     if n_clicks_orange > 0:
-#         theme = {'border-left-color:': "orange"}
-#     elif n_clicks_blue > 0:
-#         theme = {'border-left-color:': "blue"}
-#     elif n_clicks_grey > 0:
-#         theme = {'border-left-color:': "grey"}
-
-#     return theme, theme, theme
 
 
 @ app.callback(
