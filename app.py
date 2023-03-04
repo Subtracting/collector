@@ -126,10 +126,11 @@ date_dropdown = dbc.Row(
 )
 
 stat_graph = html.Div([
-    html.Br(),
     dcc.Graph(id='bar-chart',
               config={'displayModeBar': False})],
-    style={"margin": "20px"},
+    style={"margin": "20px",
+           "margin-left": "0px",
+           "padding": "0px"},
     className="card")
 
 header = html.Div([
@@ -160,6 +161,8 @@ app.layout = html.Div(dbc.Container(
          #  first tab
          dcc.Tab(label='Dashboard', style=tab_style, selected_style=tab_selected_style, children=[
              html.Div([
+                 html.Br(),
+                 # first row
                  dbc.Row([
                      dbc.Col([
                          stat_graph,
@@ -167,10 +170,17 @@ app.layout = html.Div(dbc.Container(
                      ], width=7),
                      dbc.Col([
                          # scatter
-                         dbc.Row(html.Div(dcc.Graph(id='strip-chart',
-                                 config={'displayModeBar': False}),
-                             className="card", style={"margin": "20px", "padding": "0px"}))], width=4)
-                 ]),
+                         dbc.Row(
+                             html.Div(dcc.Graph(id='strip-chart', config={'displayModeBar': False}),
+                                      className="card",
+                                      style={"margin": "20px",
+                                             "padding": "0px",
+                                             "float": 'right'}
+                                      ))],
+                             width=4)
+                 ]
+                     #  , justify="center"
+                 ),
                  #  second row
                  dbc.Row([
                      dbc.Col([
@@ -178,17 +188,31 @@ app.layout = html.Div(dbc.Container(
                          dbc.Row(
                              dbc.Col(html.Div(children=[dbc.Button(subject, className="card", style={
                                  'margin-left': '3px', 'float': 'right', 'background-color': '#292828'},
-                                 id=f'button-{subject}', n_clicks=0) for subject in stats_df['subject'].unique()]), style={"margin-right": "20px", "padding": "0px"}),
+                                 id=f'button-{subject}', n_clicks=0) for subject in stats_df['subject'].unique()]),
+                                 style={"margin-right": "30px",
+                                        "padding": "0px"}
+                             ),
                          ),
                          dbc.Row(id='stat-boxes',
-                                 style={"margin": "20px", "padding": "0px"})
+                                 style={"margin": "20px",
+                                        "padding": "0px", "justify": "center"}
+                                 )
 
                      ], width=7),
                      dbc.Col([
                          # table
                          dbc.Row(html.Div(stat_table,
-                                 className="card", style={"margin": "20px", "padding": "0px"}))], width=4)
-                 ]),
+                                 className="card",
+                                          style={"margin": "20px",
+                                                 "margin-top": "0px",
+                                                 "padding": "0px",
+                                                 "float": 'right'}
+                                          ))], width=4)
+                 ]
+                     #  , justify="center"
+                 ),
+
+                 html.Br(),
 
                  html.Div([
                      html.Div('Log-A-Stat', className="head1"),
