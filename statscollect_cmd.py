@@ -89,9 +89,6 @@ def logger():
         logger()
 
 
-# logger()
-# plot_sql("date", "subject", "Planking")
-
 delete_rows(cur, conn)
 
 close_conn(conn)
