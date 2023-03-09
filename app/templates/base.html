@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/darkly/bootstrap.min.css" />
+</head>
+
+<section class="hero is-primary is-fullheight">
+  <div>
+      <a href="{{ url_for('main.index') }}">Home</a>
+      {% if current_user.is_anonymous %}
+      <a href="{{ url_for('main.login') }}">Login</a>
+      {% else %}
+      <a href="{{ url_for('main.logout') }}">Logout</a>
+      {% endif %}
+    
+      {% block content %}
+      {% endblock %}
+  </div>
+</section>
